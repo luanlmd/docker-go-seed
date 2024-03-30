@@ -27,5 +27,4 @@ func root(res http.ResponseWriter, req *http.Request) {
 func main() {
 	http.HandleFunc("/", root)
 	http.ListenAndServe(":3000", nil)
-	fmt.Println("Hello, World!")
 }
