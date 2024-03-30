@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 )
 
 type Response struct {
@@ -25,6 +26,9 @@ func root(res http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
+	port := os.Getenv("PORT")
+	addr := fmt.Sprintf(":%s", port)
+
 	http.HandleFunc("/", root)
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(addr, nil)
 }
