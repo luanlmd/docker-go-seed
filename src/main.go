@@ -12,7 +12,7 @@ type Response struct {
 }
 
 func root(res http.ResponseWriter, req *http.Request) {
-	message := Response{Success: true, Message: "Hello, World!"}
+	message := Response{Success: true, Message: "Hello from Golang!"}
 	b, err := json.Marshal(message)
 
 	if err != nil {
