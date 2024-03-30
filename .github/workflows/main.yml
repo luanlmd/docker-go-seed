@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Docker Build
+        run: docker build . -f docker/prod.Dockerfile -t luanlmd/docker-go-seed:v${{ github.run_number }}
+
+      - name: Docker Login
+        run: docker login -u luanlmd -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Docker Push
+        run: docker push luanlmd/docker-go-seed:v${{ github.run_number }}
